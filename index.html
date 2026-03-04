@@ -3,25 +3,6 @@
 <head>
     <title>F1 Fantasy League Hub</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-
-        h1, h2 {
-            color: #d00000;
-        }
-
-        .box {
-            background: white;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -33,6 +14,23 @@
             .main-grid {
                 grid-template-columns: 1fr;
             }
+        }
+
+        body {
+            font-family: Arial;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #d00000;
+        }
+        .box {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
         }
 
         /* Tables */
@@ -59,7 +57,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* Leader Highlight (optional) */
+        /* Leader Highlight */
         .leader {
             background-color: #fff3cd;
             font-weight: bold;
@@ -79,6 +77,12 @@
         tbody tr:hover {
             background-color: #f1f1f1;
             transition: background-color 0.2s;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -122,35 +126,47 @@
             <h2>Driver Standings</h2>
             <table id="driverTable">
                 <thead>
-                    <tr>
-                        <th>Driver</th>
-                        <th>Team</th>
-                        <th>Pts</th>
-                    </tr>
+                    <tr><th>#</th><th>Driver</th><th>Team</th><th>Pts</th></tr>
                 </thead>
                 <tbody>
-                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Lando Norris</td><td>McLaren</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Oscar Piastri</td><td>McLaren</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#1e41ff;"></span>Max Verstappen</td><td>Red Bull</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#1e41ff;"></span>Liam Lawson</td><td>Red Bull</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#dc0000;"></span>Lewis Hamilton</td><td>Ferrari</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#dc0000;"></span>Charles Leclerc</td><td>Ferrari</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#00d2be;"></span>George Russell</td><td>Mercedes</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#00d2be;"></span>Kimi Antonelli</td><td>Mercedes</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#ffbf00;"></span>Carlos Sainz</td><td>Williams</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#ffbf00;"></span>Alexander Albon</td><td>Williams</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Isack Hadjar</td><td>Racing Bulls</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Arvid Lindblad</td><td>Racing Bulls</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#006f62;"></span>Fernando Alonso</td><td>Aston Martin</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#006f62;"></span>Lance Stroll</td><td>Aston Martin</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#bd0e0e;"></span>Esteban Ocon</td><td>Haas</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#bd0e0e;"></span>Oliver Bearman</td><td>Haas</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#00b5e2;"></span>Nico Hülkenberg</td><td>Audi</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#00b5e2;"></span>Gabriel Bortoleto</td><td>Audi</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#0090ff;"></span>Pierre Gasly</td><td>Alpine</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#0090ff;"></span>Franco Colapinto</td><td>Alpine</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#808080;"></span>Sergio Perez</td><td>Cadillac</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#808080;"></span>Valtteri Bottas</td><td>Cadillac</td><td>0</td></tr>
+                    <tr data-team="McLaren"><td>1</td><td><span class="team-color" style="background:#ff8000;"></span>Lando Norris</td><td>McLaren</td><td>0</td></tr>
+                    <tr data-team="McLaren"><td>2</td><td><span class="team-color" style="background:#ff8000;"></span>Oscar Piastri</td><td>McLaren</td><td>0</td></tr>
+                    <tr data-team="Red Bull"><td>3</td><td><span class="team-color" style="background:#1e41ff;"></span>Max Verstappen</td><td>Red Bull</td><td>0</td></tr>
+                    <tr data-team="Red Bull"><td>4</td><td><span class="team-color" style="background:#1e41ff;"></span>Liam Lawson</td><td>Red Bull</td><td>0</td></tr>
+                    <tr data-team="Ferrari"><td>5</td><td><span class="team-color" style="background:#dc0000;"></span>Lewis Hamilton</td><td>Ferrari</td><td>0</td></tr>
+                    <tr data-team="Ferrari"><td>6</td><td><span class="team-color" style="background:#dc0000;"></span>Charles Leclerc</td><td>Ferrari</td><td>0</td></tr>
+                    <tr data-team="Mercedes"><td>7</td><td><span class="team-color" style="background:#00d2be;"></span>George Russell</td><td>Mercedes</td><td>0</td></tr>
+                    <tr data-team="Mercedes"><td>8</td><td><span class="team-color" style="background:#00d2be;"></span>Kimi Antonelli</td><td>Mercedes</td><td>0</td></tr>
+                    <tr data-team="Williams"><td>9</td><td><span class="team-color" style="background:#ffbf00;"></span>Carlos Sainz</td><td>Williams</td><td>0</td></tr>
+                    <tr data-team="Williams"><td>10</td><td><span class="team-color" style="background:#ffbf00;"></span>Alexander Albon</td><td>Williams</td><td>0</td></tr>
+                    <tr data-team="Racing Bulls"><td>11</td><td><span class="team-color" style="background:#ff8000;"></span>Isack Hadjar</td><td>Racing Bulls</td><td>0</td></tr>
+                    <tr data-team="Racing Bulls"><td>12</td><td><span class="team-color" style="background:#ff8000;"></span>Arvid Lindblad</td><td>Racing Bulls</td><td>0</td></tr>
+                    <tr data-team="Aston Martin"><td>13</td><td><span class="team-color" style="background:#006f62;"></span>Fernando Alonso</td><td>Aston Martin</td><td>0</td></tr>
+                    <tr data-team="Aston Martin"><td>14</td><td><span class="team-color" style="background:#006f62;"></span>Lance Stroll</td><td>Aston Martin</td><td>0</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Update Standings Button -->
+        <div style="text-align:center; margin-bottom:20px;">
+            <button onclick="updateStandings()">Update Standings</button>
+        </div>
+
+        <!-- Constructor Standings Section -->
+        <div class="box">
+            <h2>Constructor Standings</h2>
+            <table id="constructorTable">
+                <thead>
+                    <tr><th>Team</th><th>Pts</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>McLaren</td><td>0</td></tr>
+                    <tr><td>Red Bull</td><td>0</td></tr>
+                    <tr><td>Ferrari</td><td>0</td></tr>
+                    <tr><td>Mercedes</td><td>0</td></tr>
+                    <tr><td>Williams</td><td>0</td></tr>
+                    <tr><td>Racing Bulls</td><td>0</td></tr>
+                    <tr><td>Aston Martin</td><td>0</td></tr>
                 </tbody>
             </table>
         </div>
@@ -191,60 +207,63 @@
                 <li>TowMater's Crew – 0 pts</li>
             </ol>
         </div>
-
-        <!-- Constructor Standings -->
-        <div class="box">
-            <h2>Constructor Standings</h2>
-            <table id="constructorTable">
-                <thead>
-                    <tr>
-                        <th>Team</th>
-                        <th>Pts</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td><span class="team-color" style="background:#ff8000;"></span>McLaren</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#dc0000;"></span>Ferrari</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#1e41ff;"></span>Red Bull</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#00d2be;"></span>Mercedes</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#ffbf00;"></span>Williams</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Racing Bulls</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#006f62;"></span>Aston Martin</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#bd0e0e;"></span>Haas</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#00b5e2;"></span>Audi</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#0090ff;"></span>Alpine</td><td>0</td></tr>
-                    <tr><td><span class="team-color" style="background:#808080;"></span>Cadillac</td><td>0</td></tr>
-                </tbody>
-            </table>
-        </div>
     </div> <!-- end RIGHT COLUMN -->
 
 </div> <!-- closes main-grid -->
 
 <script>
-    // 2026 Australian GP Lights Out Countdown
+    // Countdown Timer
     const raceDate = new Date(Date.UTC(2026, 2, 8, 4, 0, 0));
     const countdownElement = document.getElementById("countdown");
 
     function updateCountdown() {
         const now = new Date();
-        const diff = raceDate - now;
-
-        if (diff <= 0) {
+        const difference = raceDate - now;
+        if (difference <= 0) {
             countdownElement.innerHTML = "🏁 Lights Out!";
             return;
         }
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
+        const days = Math.floor(difference / (1000*60*60*24));
+        const hours = Math.floor((difference / (1000*60*60)) % 24);
+        const minutes = Math.floor((difference / (1000*60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
         countdownElement.innerHTML = `(${days}d ${hours}h ${minutes}m ${seconds}s)`;
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
+
+    // Update Driver & Constructor Standings
+    function updateStandings() {
+        const driverTable = document.getElementById("driverTable").tBodies[0];
+        const drivers = Array.from(driverTable.rows);
+
+        // Sort drivers by points descending
+        drivers.sort((a,b)=>parseInt(b.cells[3].innerText)-parseInt(a.cells[3].innerText));
+        drivers.forEach((row,index)=>{
+            row.cells[0].innerText = index+1; // Update rank
+            driverTable.appendChild(row);
+        });
+
+        // Calculate constructor points
+        const constructorPoints = {};
+        drivers.forEach(row=>{
+            const team = row.dataset.team;
+            const pts = parseInt(row.cells[3].innerText);
+            constructorPoints[team] = (constructorPoints[team]||0)+pts;
+        });
+
+        // Sort and update constructor table
+        const constructorTable = document.getElementById("constructorTable").tBodies[0];
+        const constructors = Array.from(constructorTable.rows);
+        constructors.sort((a,b)=>{
+            return (constructorPoints[b.cells[0].innerText]||0)-(constructorPoints[a.cells[0].innerText]||0);
+        }).forEach(row=>{
+            const team = row.cells[0].innerText;
+            row.cells[1].innerText = constructorPoints[team]||0;
+            constructorTable.appendChild(row);
+        });
+    }
 </script>
 
 </body>
