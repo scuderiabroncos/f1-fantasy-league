@@ -3,6 +3,25 @@
 <head>
     <title>F1 Fantasy League Hub</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        h1, h2 {
+            color: #d00000;
+        }
+
+        .box {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
         .main-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -14,23 +33,6 @@
             .main-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        body {
-            font-family: Arial;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        h1, h2 {
-            color: #d00000;
-        }
-        .box {
-            background: white;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
         }
 
         /* Tables */
@@ -57,7 +59,7 @@
             border-bottom: 1px solid #eee;
         }
 
-        /* Leader Highlight */
+        /* Leader Highlight (optional) */
         .leader {
             background-color: #fff3cd;
             font-weight: bold;
@@ -121,35 +123,34 @@
             <table id="driverTable">
                 <thead>
                     <tr>
-                        <th>#</th>
                         <th>Driver</th>
                         <th>Team</th>
                         <th>Pts</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>1</td><td><span class="team-color" style="background:#ff8000;"></span>Lando Norris</td><td>McLaren</td><td>0</td></tr>
-                    <tr><td>2</td><td><span class="team-color" style="background:#ff8000;"></span>Oscar Piastri</td><td>McLaren</td><td>0</td></tr>
-                    <tr><td>3</td><td><span class="team-color" style="background:#1e41ff;"></span>Max Verstappen</td><td>Red Bull</td><td>0</td></tr>
-                    <tr><td>4</td><td><span class="team-color" style="background:#1e41ff;"></span>Liam Lawson</td><td>Red Bull</td><td>0</td></tr>
-                    <tr><td>5</td><td><span class="team-color" style="background:#dc0000;"></span>Lewis Hamilton</td><td>Ferrari</td><td>0</td></tr>
-                    <tr><td>6</td><td><span class="team-color" style="background:#dc0000;"></span>Charles Leclerc</td><td>Ferrari</td><td>0</td></tr>
-                    <tr><td>7</td><td><span class="team-color" style="background:#00d2be;"></span>George Russell</td><td>Mercedes</td><td>0</td></tr>
-                    <tr><td>8</td><td><span class="team-color" style="background:#00d2be;"></span>Kimi Antonelli</td><td>Mercedes</td><td>0</td></tr>
-                    <tr><td>9</td><td><span class="team-color" style="background:#ffbf00;"></span>Carlos Sainz</td><td>Williams</td><td>0</td></tr>
-                    <tr><td>10</td><td><span class="team-color" style="background:#ffbf00;"></span>Alexander Albon</td><td>Williams</td><td>0</td></tr>
-                    <tr><td>11</td><td><span class="team-color" style="background:#ff8000;"></span>Isack Hadjar</td><td>Racing Bulls</td><td>0</td></tr>
-                    <tr><td>12</td><td><span class="team-color" style="background:#ff8000;"></span>Arvid Lindblad</td><td>Racing Bulls</td><td>0</td></tr>
-                    <tr><td>13</td><td><span class="team-color" style="background:#006f62;"></span>Fernando Alonso</td><td>Aston Martin</td><td>0</td></tr>
-                    <tr><td>14</td><td><span class="team-color" style="background:#006f62;"></span>Lance Stroll</td><td>Aston Martin</td><td>0</td></tr>
-                    <tr><td>15</td><td><span class="team-color" style="background:#bd0e0e;"></span>Esteban Ocon</td><td>Haas</td><td>0</td></tr>
-                    <tr><td>16</td><td><span class="team-color" style="background:#bd0e0e;"></span>Oliver Bearman</td><td>Haas</td><td>0</td></tr>
-                    <tr><td>17</td><td><span class="team-color" style="background:#00b5e2;"></span>Nico Hülkenberg</td><td>Audi</td><td>0</td></tr>
-                    <tr><td>18</td><td><span class="team-color" style="background:#00b5e2;"></span>Gabriel Bortoleto</td><td>Audi</td><td>0</td></tr>
-                    <tr><td>19</td><td><span class="team-color" style="background:#0090ff;"></span>Pierre Gasly</td><td>Alpine</td><td>0</td></tr>
-                    <tr><td>20</td><td><span class="team-color" style="background:#0090ff;"></span>Franco Colapinto</td><td>Alpine</td><td>0</td></tr>
-                    <tr><td>21</td><td><span class="team-color" style="background:#808080;"></span>Sergio Perez</td><td>Cadillac</td><td>0</td></tr>
-                    <tr><td>22</td><td><span class="team-color" style="background:#808080;"></span>Valtteri Bottas</td><td>Cadillac</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Lando Norris</td><td>McLaren</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Oscar Piastri</td><td>McLaren</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#1e41ff;"></span>Max Verstappen</td><td>Red Bull</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#1e41ff;"></span>Liam Lawson</td><td>Red Bull</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#dc0000;"></span>Lewis Hamilton</td><td>Ferrari</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#dc0000;"></span>Charles Leclerc</td><td>Ferrari</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#00d2be;"></span>George Russell</td><td>Mercedes</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#00d2be;"></span>Kimi Antonelli</td><td>Mercedes</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#ffbf00;"></span>Carlos Sainz</td><td>Williams</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#ffbf00;"></span>Alexander Albon</td><td>Williams</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Isack Hadjar</td><td>Racing Bulls</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#ff8000;"></span>Arvid Lindblad</td><td>Racing Bulls</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#006f62;"></span>Fernando Alonso</td><td>Aston Martin</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#006f62;"></span>Lance Stroll</td><td>Aston Martin</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#bd0e0e;"></span>Esteban Ocon</td><td>Haas</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#bd0e0e;"></span>Oliver Bearman</td><td>Haas</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#00b5e2;"></span>Nico Hülkenberg</td><td>Audi</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#00b5e2;"></span>Gabriel Bortoleto</td><td>Audi</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#0090ff;"></span>Pierre Gasly</td><td>Alpine</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#0090ff;"></span>Franco Colapinto</td><td>Alpine</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#808080;"></span>Sergio Perez</td><td>Cadillac</td><td>0</td></tr>
+                    <tr><td><span class="team-color" style="background:#808080;"></span>Valtteri Bottas</td><td>Cadillac</td><td>0</td></tr>
                 </tbody>
             </table>
         </div>
@@ -167,7 +168,7 @@
             <p>
                 We're racing down under this week in Melbourne, Australia! There has been a big overhaul to the F1 technical regulations — 
                 the rules the teams use to build their cars from scratch. Here's a great article that explains the changes in detail: 
-                <a href="https://www.thetimes.com/sport/formula-one/article/f1-rule-changes-2026-regulations-explained-cars-3d-9lnj70dh5?gaa_at=eafs&gaa_n=AWEtsqdcVuyHJfi99mX5CJoihgMfERBs4o_-Y8okmigwlDQ1_ZJfY-XBKHOXfEnCM7g%3D&gaa_ts=69a7011b&gaa_sig=rBYLfbDK5myxPuXEQINlPrinLdPQDjpiVgJJ542eTf4Kex4WjWKRF0zSgcFpJDpiHrliM9uR_sEKT3v7sXIXsQ%3D%3D" target="_blank">
+                <a href="https://www.thetimes.com/sport/formula-one/article/f1-rule-changes-2026-regulations-explained-cars-3d-9lnj70dh5" target="_blank">
                     F1 2026 regulations explained (The Times)
                 </a>.
             </p>
@@ -221,23 +222,23 @@
 </div> <!-- closes main-grid -->
 
 <script>
-    // 2026 Australian GP Lights Out
+    // 2026 Australian GP Lights Out Countdown
     const raceDate = new Date(Date.UTC(2026, 2, 8, 4, 0, 0));
     const countdownElement = document.getElementById("countdown");
 
     function updateCountdown() {
         const now = new Date();
-        const difference = raceDate - now;
+        const diff = raceDate - now;
 
-        if (difference <= 0) {
+        if (diff <= 0) {
             countdownElement.innerHTML = "🏁 Lights Out!";
             return;
         }
 
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((difference / (1000 * 60)) % 60);
-        const seconds = Math.floor((difference / 1000) % 60);
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
 
         countdownElement.innerHTML = `(${days}d ${hours}h ${minutes}m ${seconds}s)`;
     }
