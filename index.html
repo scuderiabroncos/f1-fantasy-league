@@ -271,25 +271,32 @@ tbody tr:hover{
 
 </div>
 
+<!-- Countdown Script -->
 <script>
-/* Countdown timer */
-const raceDate = new Date(Date.UTC(2026,2,5,4,0,0)); // March 5, 2026 04:00 UTC
+/* Countdown timer accurate for viewer's local timezone */
+
+// Race start in UTC (Melbourne 2026-03-05 15:00 AEDT is UTC+11)
+const raceUTC = new Date(Date.UTC(2026, 2, 5, 4, 0, 0)); // March 5, 2026 04:00 UTC
 const countdownElement = document.getElementById("countdown");
 
 function updateCountdown() {
-  const now = new Date();
-  const diff = raceDate - now;
-  if(diff <= 0){
+  const now = new Date(); // local time of viewer
+  const diff = raceUTC - now; // difference in milliseconds
+
+  if (diff <= 0) {
     countdownElement.innerHTML = "🏁 Lights Out!";
     return;
   }
-  const d = Math.floor(diff/(1000*60*60*24));
-  const h = Math.floor((diff/(1000*60*60)) % 24);
-  const m = Math.floor((diff/(1000*60)) % 60);
-  const s = Math.floor((diff/1000) % 60);
+
+  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((diff / (1000 * 60)) % 60);
+  const s = Math.floor((diff / 1000) % 60);
+
   countdownElement.innerHTML = `(${d}d ${h}h ${m}m ${s}s)`;
 }
 
+// Update every second
 setInterval(updateCountdown, 1000);
 updateCountdown();
 </script>
