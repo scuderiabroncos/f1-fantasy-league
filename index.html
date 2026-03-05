@@ -245,6 +245,8 @@
     <p><strong>Top Driver:</strong> <span id="topDriver">TBD</span></p>
     <p><strong>Top Constructor:</strong> <span id="topConstructor">TBD</span></p>
     <p><strong>Total Points Scored:</strong> <span id="totalPoints">0</span></p>
+    <p><strong>Best Teammate Gap:</strong> <span id="teammateGap">TBD</span></p>
+    <p><strong>Most Balanced Team:</strong> <span id="balancedTeam">TBD</span></p>
 
     <button onclick="calculateStats()">Analyze Stats</button>
 </div>
@@ -277,15 +279,46 @@
 
     // Update Driver & Constructor Standings
     function updateStandings() {
-        const driverTable = document.getElementById("driverTable").tBodies[0];
-        const drivers = Array.from(driverTable.rows);
 
-        // Sort drivers by points descending
-        drivers.sort((a,b)=>parseInt(b.cells[3].innerText)-parseInt(a.cells[3].innerText));
-        drivers.forEach((row,index)=>{
-            row.cells[0].innerText = index+1; // Update rank
-            driverTable.appendChild(row);
-        });
+    const driverTable = document.getElementById("driverTable").tBodies[0];
+    const drivers = Array.from(driverTable.rows);
+
+    // Sort drivers
+    drivers.sort((a,b)=>parseInt(b.cells[3].innerText)-parseInt(a.cells[3].innerText));
+
+    drivers.forEach((row,index)=>{
+        row.cells[0].innerText = index+1;
+        driverTable.appendChild(row);
+    });
+
+    // Constructor totals
+    const constructorPoints = {};
+
+    drivers.forEach(row=>{
+        const team = row.dataset.team;
+        const pts = parseInt(row.cells[3].innerText);
+
+        if(!constructorPoints[team]) constructorPoints[team] = 0;
+
+        constructorPoints[team] += pts;
+    });
+
+    const constructorTable = document.getElementById("constructorTable").tBodies[0];
+    const constructors = Array.from(constructorTable.rows);
+
+    constructors.forEach(row=>{
+        const team = row.dataset.team;
+        row.cells[1].innerText = constructorPoints[team] || 0;
+    });
+
+    constructors.sort((a,b)=>parseInt(b.cells[1].innerText)-parseInt(a.cells[1].innerText));
+
+    constructors.forEach(row=>{
+        constructorTable.appendChild(row);
+    });
+
+    calculateStats();
+}
 
         // Calculate constructor points
         const constructorPoints = {};
@@ -307,6 +340,50 @@
         });
     }
 
+// Teammate gap
+const teamDrivers = {};
+
+for (let row of driverRows) {
+
+    const name = row.cells[1].innerText;
+    const pts = parseInt(row.cells[3].innerText);
+    const team = row.dataset.team;
+
+    if(!teamDrivers[team]) teamDrivers[team] = [];
+
+    teamDrivers[team].push({name, pts});
+}
+
+let biggestGap = 0;
+let gapText = "";
+
+let mostBalanced = Infinity;
+let balancedTeam = "";
+
+for (let team in teamDrivers) {
+
+    if(teamDrivers[team].length === 2){
+
+        const d1 = teamDrivers[team][0];
+        const d2 = teamDrivers[team][1];
+
+        const gap = Math.abs(d1.pts - d2.pts);
+
+        if(gap > biggestGap){
+            biggestGap = gap;
+            gapText = `${d1.name} vs ${d2.name} (${biggestGap} pts)`;
+        }
+
+        if(gap < mostBalanced){
+            mostBalanced = gap;
+            balancedTeam = team;
+        }
+    }
+}
+
+document.getElementById("teammateGap").innerText = gapText;
+document.getElementById("balancedTeam").innerText = balancedTeam;
+    
 function calculateStats() {
 
     const driverRows = document.getElementById("driverTable").tBodies[0].rows;
@@ -350,5 +427,9 @@ function calculateStats() {
     
 </script>
 
+window.onload = function() {
+    updateStandings();
+};
+    
 </body>
 </html>
