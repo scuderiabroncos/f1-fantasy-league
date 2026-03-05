@@ -93,128 +93,127 @@ Join the League Now
 
 <div class="main-grid">
 
-<div class="box">
-<h2>
-Next Race
-<span id="countdown" style="font-size:0.8em;color:#d00000;font-weight:bold;"></span>
-</h2>
+  <div class="box">
+    <h2>
+      Next Race
+      <span id="countdown" style="font-size:0.8em;color:#d00000;font-weight:bold;"></span>
+    </h2>
+    <p><strong>Australian Grand Prix – March 3–5</strong></p>
+    <img src="melbourne-2026.jpeg"
+         style="width:100%;max-width:425px;border-radius:8px;margin-top:10px;">
+    <p style="font-size:0.8em;margin-top:8px;color:#555;">
+      Poster credit: © BWT Alpine F1 Team – 2026 Australian GP artwork
+    </p>
+  </div>
 
-<p><strong>Australian Grand Prix – March 3–5</strong></p>
-<img src="melbourne-2026.jpeg"
-style="width:100%;max-width:425px;border-radius:8px;margin-top:10px;">
-<p style="font-size:0.8em;margin-top:8px;color:#555;">
-Poster credit: © BWT Alpine F1 Team – 2026 Australian GP artwork
-</p>
-</div>
+  <div class="box">
+    <h2>Weekly Summary</h2>
+    <p>
+      It's race week! Welcome to the 2026 Formula 1 season. If you're new here, check out the
+      <a href="https://www.f1.cool/blog/338" target="_blank">Shift+F1 podcast Preseason Primer episode</a>,
+      which assumes no prior F1 knowledge.
+    </p>
+    <p>
+      We're racing down under this week in Melbourne, Australia! There has been a big overhaul to the F1 technical regulations —
+      the rules the teams use to build their cars from scratch. Here's a great article that explains the changes in detail:
+      <a href="https://www.thetimes.com/sport/formula-one/article/f1-rule-changes-2026-regulations-explained-cars-3d-9lnj70dh5" target="_blank">
+        F1 2026 regulations explained (The Times)
+      </a>.
+    </p>
+  </div>
 
-<div class="box">
-<h2>Driver Standings</h2>
-<table id="driverTable">
-<thead>
-<tr>
-<th>#</th>
-<th>Driver</th>
-<th>Team</th>
-<th>Pts</th>
-</tr>
-</thead>
-<tbody>
-<tr data-team="McLaren"><td>1</td><td><span class="team-color" style="background:#ff8000;"></span>Lando Norris</td><td>McLaren</td><td>0</td></tr>
-<tr data-team="McLaren"><td>2</td><td><span class="team-color" style="background:#ff8000;"></span>Oscar Piastri</td><td>McLaren</td><td>0</td></tr>
-<tr data-team="Red Bull"><td>3</td><td><span class="team-color" style="background:#1e41ff;"></span>Max Verstappen</td><td>Red Bull</td><td>0</td></tr>
-<tr data-team="Red Bull"><td>4</td><td><span class="team-color" style="background:#1e41ff;"></span>Isack Hadjar</td><td>Red Bull</td><td>0</td></tr>
-<tr data-team="Ferrari"><td>5</td><td><span class="team-color" style="background:#dc0000;"></span>Lewis Hamilton</td><td>Ferrari</td><td>0</td></tr>
-<tr data-team="Ferrari"><td>6</td><td><span class="team-color" style="background:#dc0000;"></span>Charles Leclerc</td><td>Ferrari</td><td>0</td></tr>
-<tr data-team="Mercedes"><td>7</td><td><span class="team-color" style="background:#00d2be;"></span>George Russell</td><td>Mercedes</td><td>0</td></tr>
-<tr data-team="Mercedes"><td>8</td><td><span class="team-color" style="background:#00d2be;"></span>Kimi Antonelli</td><td>Mercedes</td><td>0</td></tr>
-<tr data-team="Williams"><td>9</td><td><span class="team-color" style="background:#ffbf00;"></span>Carlos Sainz</td><td>Williams</td><td>0</td></tr>
-<tr data-team="Williams"><td>10</td><td><span class="team-color" style="background:#ffbf00;"></span>Alexander Albon</td><td>Williams</td><td>0</td></tr>
-<tr data-team="Racing Bulls"><td>11</td><td><span class="team-color" style="background:#ff4500;"></span>Liam Lawson</td><td>Racing Bulls</td><td>0</td></tr>
-<tr data-team="Racing Bulls"><td>12</td><td><span class="team-color" style="background:#ff4500;"></span>Arvid Lindblad</td><td>Racing Bulls</td><td>0</td></tr>
-<tr data-team="Aston Martin"><td>13</td><td><span class="team-color" style="background:#006f62;"></span>Fernando Alonso</td><td>Aston Martin</td><td>0</td></tr>
-<tr data-team="Aston Martin"><td>14</td><td><span class="team-color" style="background:#006f62;"></span>Lance Stroll</td><td>Aston Martin</td><td>0</td></tr>
-<tr data-team="Haas"><td>15</td><td><span class="team-color" style="background:#bd0e0e;"></span>Esteban Ocon</td><td>Haas</td><td>0</td></tr>
-<tr data-team="Haas"><td>16</td><td><span class="team-color" style="background:#bd0e0e;"></span>Oliver Bearman</td><td>Haas</td><td>0</td></tr>
-<tr data-team="Audi"><td>17</td><td><span class="team-color" style="background:#00b5e2;"></span>Nico Hülkenberg</td><td>Audi</td><td>0</td></tr>
-<tr data-team="Audi"><td>18</td><td><span class="team-color" style="background:#00b5e2;"></span>Gabriel Bortoleto</td><td>Audi</td><td>0</td></tr>
-<tr data-team="Alpine"><td>19</td><td><span class="team-color" style="background:#0090ff;"></span>Pierre Gasly</td><td>Alpine</td><td>0</td></tr>
-<tr data-team="Alpine"><td>20</td><td><span class="team-color" style="background:#0090ff;"></span>Franco Colapinto</td><td>Alpine</td><td>0</td></tr>
-<tr data-team="Cadillac"><td>21</td><td><span class="team-color" style="background:#808080;"></span>Sergio Perez</td><td>Cadillac</td><td>0</td></tr>
-<tr data-team="Cadillac"><td>22</td><td><span class="team-color" style="background:#808080;"></span>Valtteri Bottas</td><td>Cadillac</td><td>0</td></tr>
-</tbody>
-</table>
+  <div class="box">
+    <h2>League Standings</h2>
+    <ol>
+      <li>Bear Essentials – 0 pts</li>
+      <li>Delta Krass – 0 pts</li>
+      <li>Delta Love – 0 pts</li>
+      <li>Here I Go! – 0 pts</li>
+      <li>Hold on! – 0 pts</li>
+      <li>Fast Car Go Michael Team – 0 pts</li>
+      <li>Fast Cars w/ Good Drivers – 0 pts</li>
+      <li>KachowStickers24 – 0 pts</li>
+      <li>KatAttack-Fast & Furriest – 0 pts</li>
+      <li>The Maxtrix 5 – 0 pts</li>
+      <li>TowMater's Crew – 0 pts</li>
+    </ol>
+  </div>
 
-<div style="text-align:center;margin-top:10px;">
-<button onclick="updateStandings()">Update Standings</button>
-</div>
-</div>
+  <div class="box">
+    <h2>League Statistics</h2>
+    <p><strong>Top Driver:</strong> <span id="topDriver">TBD</span></p>
+    <p><strong>Top Constructor:</strong> <span id="topConstructor">TBD</span></p>
+    <p><strong>Total Points Scored:</strong> <span id="totalPoints">0</span></p>
+    <p><strong>Best Teammate Gap:</strong> <span id="teammateGap">TBD</span></p>
+    <p><strong>Most Balanced Team:</strong> <span id="balancedTeam">TBD</span></p>
+  </div>
 
-<div class="box">
-<h2>Weekly Summary</h2>
-<p>
-It's race week! Welcome to the 2026 Formula 1 season. If you're new here, check out the
-<a href="https://www.f1.cool/blog/338" target="_blank">Shift+F1 podcast Preseason Primer episode</a>,
-which assumes no prior F1 knowledge.
-</p>
-<p>
-We're racing down under this week in Melbourne, Australia! There has been a big overhaul to the F1 technical regulations —
-the rules the teams use to build their cars from scratch. Here's a great article that explains the changes in detail:
-<a href="https://www.thetimes.com/sport/formula-one/article/f1-rule-changes-2026-regulations-explained-cars-3d-9lnj70dh5" target="_blank">
-F1 2026 regulations explained (The Times)
-</a>.
-</p>
-</div>
+  <!-- DRIVER STANDINGS MOVED HERE -->
+  <div class="box">
+    <h2>Driver Standings</h2>
+    <table id="driverTable">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Driver</th>
+          <th>Team</th>
+          <th>Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-team="McLaren"><td>1</td><td><span class="team-color" style="background:#ff8000;"></span>Lando Norris</td><td>McLaren</td><td>0</td></tr>
+        <tr data-team="McLaren"><td>2</td><td><span class="team-color" style="background:#ff8000;"></span>Oscar Piastri</td><td>McLaren</td><td>0</td></tr>
+        <tr data-team="Red Bull"><td>3</td><td><span class="team-color" style="background:#1e41ff;"></span>Max Verstappen</td><td>Red Bull</td><td>0</td></tr>
+        <tr data-team="Red Bull"><td>4</td><td><span class="team-color" style="background:#1e41ff;"></span>Isack Hadjar</td><td>Red Bull</td><td>0</td></tr>
+        <tr data-team="Ferrari"><td>5</td><td><span class="team-color" style="background:#dc0000;"></span>Lewis Hamilton</td><td>Ferrari</td><td>0</td></tr>
+        <tr data-team="Ferrari"><td>6</td><td><span class="team-color" style="background:#dc0000;"></span>Charles Leclerc</td><td>Ferrari</td><td>0</td></tr>
+        <tr data-team="Mercedes"><td>7</td><td><span class="team-color" style="background:#00d2be;"></span>George Russell</td><td>Mercedes</td><td>0</td></tr>
+        <tr data-team="Mercedes"><td>8</td><td><span class="team-color" style="background:#00d2be;"></span>Kimi Antonelli</td><td>Mercedes</td><td>0</td></tr>
+        <tr data-team="Williams"><td>9</td><td><span class="team-color" style="background:#ffbf00;"></span>Carlos Sainz</td><td>Williams</td><td>0</td></tr>
+        <tr data-team="Williams"><td>10</td><td><span class="team-color" style="background:#ffbf00;"></span>Alexander Albon</td><td>Williams</td><td>0</td></tr>
+        <tr data-team="Racing Bulls"><td>11</td><td><span class="team-color" style="background:#ff4500;"></span>Liam Lawson</td><td>Racing Bulls</td><td>0</td></tr>
+        <tr data-team="Racing Bulls"><td>12</td><td><span class="team-color" style="background:#ff4500;"></span>Arvid Lindblad</td><td>Racing Bulls</td><td>0</td></tr>
+        <tr data-team="Aston Martin"><td>13</td><td><span class="team-color" style="background:#006f62;"></span>Fernando Alonso</td><td>Aston Martin</td><td>0</td></tr>
+        <tr data-team="Aston Martin"><td>14</td><td><span class="team-color" style="background:#006f62;"></span>Lance Stroll</td><td>Aston Martin</td><td>0</td></tr>
+        <tr data-team="Haas"><td>15</td><td><span class="team-color" style="background:#bd0e0e;"></span>Esteban Ocon</td><td>Haas</td><td>0</td></tr>
+        <tr data-team="Haas"><td>16</td><td><span class="team-color" style="background:#bd0e0e;"></span>Oliver Bearman</td><td>Haas</td><td>0</td></tr>
+        <tr data-team="Audi"><td>17</td><td><span class="team-color" style="background:#00b5e2;"></span>Nico Hülkenberg</td><td>Audi</td><td>0</td></tr>
+        <tr data-team="Audi"><td>18</td><td><span class="team-color" style="background:#00b5e2;"></span>Gabriel Bortoleto</td><td>Audi</td><td>0</td></tr>
+        <tr data-team="Alpine"><td>19</td><td><span class="team-color" style="background:#0090ff;"></span>Pierre Gasly</td><td>Alpine</td><td>0</td></tr>
+        <tr data-team="Alpine"><td>20</td><td><span class="team-color" style="background:#0090ff;"></span>Franco Colapinto</td><td>Alpine</td><td>0</td></tr>
+        <tr data-team="Cadillac"><td>21</td><td><span class="team-color" style="background:#808080;"></span>Sergio Perez</td><td>Cadillac</td><td>0</td></tr>
+        <tr data-team="Cadillac"><td>22</td><td><span class="team-color" style="background:#808080;"></span>Valtteri Bottas</td><td>Cadillac</td><td>0</td></tr>
+      </tbody>
+    </table>
+    <div style="text-align:center;margin-top:10px;">
+      <button onclick="updateStandings()">Update Standings</button>
+    </div>
+  </div>
 
-<div class="box">
-<h2>League Standings</h2>
-<ol>
-  <li>Bear Essentials – 0 pts</li>
-  <li>Delta Krass – 0 pts</li>
-  <li>Delta Love – 0 pts</li>
-  <li>Here I Go! – 0 pts</li>
-  <li>Hold on! – 0 pts</li>
-  <li>Fast Car Go Michael Team – 0 pts</li>
-  <li>Fast Cars w/ Good Drivers – 0 pts</li>
-  <li>KachowStickers24 – 0 pts</li>
-  <li>KatAttack-Fast & Furriest – 0 pts</li>
-  <li>The Maxtrix 5 – 0 pts</li>
-  <li>TowMater's Crew – 0 pts</li>
-</ol>
-</div>
-
-<div class="box">
-<h2>League Statistics</h2>
-<p><strong>Top Driver:</strong> <span id="topDriver">TBD</span></p>
-<p><strong>Top Constructor:</strong> <span id="topConstructor">TBD</span></p>
-<p><strong>Total Points Scored:</strong> <span id="totalPoints">0</span></p>
-<p><strong>Best Teammate Gap:</strong> <span id="teammateGap">TBD</span></p>
-<p><strong>Most Balanced Team:</strong> <span id="balancedTeam">TBD</span></p>
-</div>
-
-<div class="box">
-<h2>Constructor Standings</h2>
-<table id="constructorTable">
-  <thead>
-    <tr>
-      <th>Team</th>
-      <th>Pts</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr data-team="McLaren"><td><span class="team-color" style="background:#ff8000;"></span>McLaren</td><td>0</td></tr>
-    <tr data-team="Ferrari"><td><span class="team-color" style="background:#dc0000;"></span>Ferrari</td><td>0</td></tr>
-    <tr data-team="Red Bull"><td><span class="team-color" style="background:#1e41ff;"></span>Red Bull</td><td>0</td></tr>
-    <tr data-team="Mercedes"><td><span class="team-color" style="background:#00d2be;"></span>Mercedes</td><td>0</td></tr>
-    <tr data-team="Williams"><td><span class="team-color" style="background:#ffbf00;"></span>Williams</td><td>0</td></tr>
-    <tr data-team="Racing Bulls"><td><span class="team-color" style="background:#ff4500;"></span>Racing Bulls</td><td>0</td></tr>
-    <tr data-team="Aston Martin"><td><span class="team-color" style="background:#006f62;"></span>Aston Martin</td><td>0</td></tr>
-    <tr data-team="Haas"><td><span class="team-color" style="background:#bd0e0e;"></span>Haas</td><td>0</td></tr>
-    <tr data-team="Audi"><td><span class="team-color" style="background:#00b5e2;"></span>Audi</td><td>0</td></tr>
-    <tr data-team="Alpine"><td><span class="team-color" style="background:#0090ff;"></span>Alpine</td><td>0</td></tr>
-    <tr data-team="Cadillac"><td><span class="team-color" style="background:#808080;"></span>Cadillac</td><td>0</td></tr>
-  </tbody>
-</table>
-</div>
+  <div class="box">
+    <h2>Constructor Standings</h2>
+    <table id="constructorTable">
+      <thead>
+        <tr>
+          <th>Team</th>
+          <th>Pts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-team="McLaren"><td><span class="team-color" style="background:#ff8000;"></span>McLaren</td><td>0</td></tr>
+        <tr data-team="Ferrari"><td><span class="team-color" style="background:#dc0000;"></span>Ferrari</td><td>0</td></tr>
+        <tr data-team="Red Bull"><td><span class="team-color" style="background:#1e41ff;"></span>Red Bull</td><td>0</td></tr>
+        <tr data-team="Mercedes"><td><span class="team-color" style="background:#00d2be;"></span>Mercedes</td><td>0</td></tr>
+        <tr data-team="Williams"><td><span class="team-color" style="background:#ffbf00;"></span>Williams</td><td>0</td></tr>
+        <tr data-team="Racing Bulls"><td><span class="team-color" style="background:#ff4500;"></span>Racing Bulls</td><td>0</td></tr>
+        <tr data-team="Aston Martin"><td><span class="team-color" style="background:#006f62;"></span>Aston Martin</td><td>0</td></tr>
+        <tr data-team="Haas"><td><span class="team-color" style="background:#bd0e0e;"></span>Haas</td><td>0</td></tr>
+        <tr data-team="Audi"><td><span class="team-color" style="background:#00b5e2;"></span>Audi</td><td>0</td></tr>
+        <tr data-team="Alpine"><td><span class="team-color" style="background:#0090ff;"></span>Alpine</td><td>0</td></tr>
+        <tr data-team="Cadillac"><td><span class="team-color" style="background:#808080;"></span>Cadillac</td><td>0</td></tr>
+      </tbody>
+    </table>
+  </div>
 
 </div>
 
