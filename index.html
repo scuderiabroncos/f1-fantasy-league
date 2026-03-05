@@ -197,7 +197,25 @@
             </ol>
         </div>
 
-   <!-- Constructor Standings -->
+<!-- Fantasy Rules -->
+<div class="box">
+    <h2>Fantasy Team Rules</h2>
+
+    <ul>
+        <li>Each player manages one F1 Fantasy team.</li>
+        <li>Teams must stay within the official F1 Fantasy cost cap.</li>
+        <li>You may make driver or constructor changes between race weekends.</li>
+        <li>No editing teams after qualifying begins.</li>
+        <li>Points are awarded based on official F1 Fantasy scoring.</li>
+        <li>The league champion is the team with the most total points at the end of the season.</li>
+    </ul>
+
+    <p style="font-size:0.9em; color:#555;">
+        Tip: Consistency often beats risky picks over a full season.
+    </p>
+</div>
+        
+        <!-- Constructor Standings -->
 <div class="box">
     <h2>Constructor Standings</h2>
     <table id="constructorTable">
@@ -218,6 +236,17 @@
             <tr data-team="Cadillac"><td><span class="team-color" style="background:#808080;"></span>Cadillac</td><td>0</td></tr>
         </tbody>
     </table>
+</div>
+
+<!-- League Statistics -->
+<div class="box">
+    <h2>League Statistics</h2>
+
+    <p><strong>Top Driver:</strong> <span id="topDriver">TBD</span></p>
+    <p><strong>Top Constructor:</strong> <span id="topConstructor">TBD</span></p>
+    <p><strong>Total Points Scored:</strong> <span id="totalPoints">0</span></p>
+
+    <button onclick="calculateStats()">Analyze Stats</button>
 </div>
         
     </div> <!-- end RIGHT COLUMN -->
@@ -277,6 +306,48 @@
             constructorTable.appendChild(row);
         });
     }
+
+function calculateStats() {
+
+    const driverRows = document.getElementById("driverTable").tBodies[0].rows;
+
+    let topDriver = "";
+    let topPoints = -1;
+    let totalPoints = 0;
+
+    for (let row of driverRows) {
+        const name = row.cells[1].innerText;
+        const pts = parseInt(row.cells[3].innerText);
+
+        totalPoints += pts;
+
+        if (pts > topPoints) {
+            topPoints = pts;
+            topDriver = name;
+        }
+    }
+
+    document.getElementById("topDriver").innerText = topDriver + " (" + topPoints + " pts)";
+    document.getElementById("totalPoints").innerText = totalPoints;
+
+    const constructorRows = document.getElementById("constructorTable").tBodies[0].rows;
+
+    let topConstructor = "";
+    let constructorPoints = -1;
+
+    for (let row of constructorRows) {
+        const team = row.cells[0].innerText;
+        const pts = parseInt(row.cells[1].innerText);
+
+        if (pts > constructorPoints) {
+            constructorPoints = pts;
+            topConstructor = team;
+        }
+    }
+
+    document.getElementById("topConstructor").innerText = topConstructor + " (" + constructorPoints + " pts)";
+}
+    
 </script>
 
 </body>
