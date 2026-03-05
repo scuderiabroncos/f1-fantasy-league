@@ -4,7 +4,6 @@
 <title>F1 Fantasy League Hub</title>
 
 <style>
-
 .main-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -79,7 +78,6 @@ padding:8px 16px;
 font-weight:bold;
 cursor:pointer;
 }
-
 </style>
 </head>
 
@@ -90,7 +88,6 @@ cursor:pointer;
 <div class="box" style="text-align:center;background:#ffd700;">
 <h2>🏁 Join Our Fantasy League!</h2>
 <p>Don’t miss out — click the link below to join our 2026 F1 Fantasy League:</p>
-
 <p>
 <a href="https://fantasy.formula1.com/en/leagues/join/P7SH4GSQT03"
 target="_blank"
@@ -102,6 +99,7 @@ Join the League Now
 
 <div class="main-grid">
 
+<!-- LEFT COLUMN -->
 <div>
 
 <div class="box">
@@ -111,23 +109,16 @@ Next Race
 </h2>
 
 <p><strong>Australian Grand Prix – March 3–5</strong></p>
-
 <img src="melbourne-2026.jpeg"
 style="width:100%;max-width:425px;border-radius:8px;margin-top:10px;">
-
 <p style="font-size:0.8em;margin-top:8px;color:#555;">
 Poster credit: © BWT Alpine F1 Team – 2026 Australian GP artwork
 </p>
-
 </div>
 
-
 <div class="box">
-
 <h2>Driver Standings</h2>
-
 <table id="driverTable">
-
 <thead>
 <tr>
 <th>#</th>
@@ -136,67 +127,70 @@ Poster credit: © BWT Alpine F1 Team – 2026 Australian GP artwork
 <th>Pts</th>
 </tr>
 </thead>
-
 <tbody>
-
 <tr data-team="McLaren"><td>1</td><td><span class="team-color" style="background:#ff8000;"></span>Lando Norris</td><td>McLaren</td><td>0</td></tr>
 <tr data-team="McLaren"><td>2</td><td><span class="team-color" style="background:#ff8000;"></span>Oscar Piastri</td><td>McLaren</td><td>0</td></tr>
-
 <tr data-team="Red Bull"><td>3</td><td><span class="team-color" style="background:#1e41ff;"></span>Max Verstappen</td><td>Red Bull</td><td>0</td></tr>
 <tr data-team="Red Bull"><td>4</td><td><span class="team-color" style="background:#1e41ff;"></span>Isack Hadjar</td><td>Red Bull</td><td>0</td></tr>
-
 <tr data-team="Ferrari"><td>5</td><td><span class="team-color" style="background:#dc0000;"></span>Lewis Hamilton</td><td>Ferrari</td><td>0</td></tr>
 <tr data-team="Ferrari"><td>6</td><td><span class="team-color" style="background:#dc0000;"></span>Charles Leclerc</td><td>Ferrari</td><td>0</td></tr>
-
 <tr data-team="Mercedes"><td>7</td><td><span class="team-color" style="background:#00d2be;"></span>George Russell</td><td>Mercedes</td><td>0</td></tr>
 <tr data-team="Mercedes"><td>8</td><td><span class="team-color" style="background:#00d2be;"></span>Kimi Antonelli</td><td>Mercedes</td><td>0</td></tr>
-
 <tr data-team="Williams"><td>9</td><td><span class="team-color" style="background:#ffbf00;"></span>Carlos Sainz</td><td>Williams</td><td>0</td></tr>
 <tr data-team="Williams"><td>10</td><td><span class="team-color" style="background:#ffbf00;"></span>Alexander Albon</td><td>Williams</td><td>0</td></tr>
-
 <tr data-team="Racing Bulls"><td>11</td><td><span class="team-color" style="background:#ff4500;"></span>Liam Lawson</td><td>Racing Bulls</td><td>0</td></tr>
 <tr data-team="Racing Bulls"><td>12</td><td><span class="team-color" style="background:#ff4500;"></span>Arvid Lindblad</td><td>Racing Bulls</td><td>0</td></tr>
-
 <tr data-team="Aston Martin"><td>13</td><td><span class="team-color" style="background:#006f62;"></span>Fernando Alonso</td><td>Aston Martin</td><td>0</td></tr>
 <tr data-team="Aston Martin"><td>14</td><td><span class="team-color" style="background:#006f62;"></span>Lance Stroll</td><td>Aston Martin</td><td>0</td></tr>
-
 <tr data-team="Haas"><td>15</td><td><span class="team-color" style="background:#bd0e0e;"></span>Esteban Ocon</td><td>Haas</td><td>0</td></tr>
 <tr data-team="Haas"><td>16</td><td><span class="team-color" style="background:#bd0e0e;"></span>Oliver Bearman</td><td>Haas</td><td>0</td></tr>
-
 <tr data-team="Audi"><td>17</td><td><span class="team-color" style="background:#00b5e2;"></span>Nico Hülkenberg</td><td>Audi</td><td>0</td></tr>
 <tr data-team="Audi"><td>18</td><td><span class="team-color" style="background:#00b5e2;"></span>Gabriel Bortoleto</td><td>Audi</td><td>0</td></tr>
-
 <tr data-team="Alpine"><td>19</td><td><span class="team-color" style="background:#0090ff;"></span>Pierre Gasly</td><td>Alpine</td><td>0</td></tr>
 <tr data-team="Alpine"><td>20</td><td><span class="team-color" style="background:#0090ff;"></span>Franco Colapinto</td><td>Alpine</td><td>0</td></tr>
-
 <tr data-team="Cadillac"><td>21</td><td><span class="team-color" style="background:#808080;"></span>Sergio Perez</td><td>Cadillac</td><td>0</td></tr>
 <tr data-team="Cadillac"><td>22</td><td><span class="team-color" style="background:#808080;"></span>Valtteri Bottas</td><td>Cadillac</td><td>0</td></tr>
-
 </tbody>
-
 </table>
 
+<div style="text-align:center;margin-top:10px;">
+<button onclick="updateStandings()">Update Standings</button>
+</div>
+</div>
+
+<!-- Fantasy League Standings -->
+<div class="box">
+<h2>League Standings</h2>
+<ol>
+<li>Bear Essentials – 0 pts</li>
+<li>Delta Krass – 0 pts</li>
+<li>Delta Love – 0 pts</li>
+<li>Here I Go! – 0 pts</li>
+<li>Hold on! – 0 pts</li>
+<li>Fast Car Go Michael Team – 0 pts</li>
+<li>Fast Cars w/ Good Drivers – 0 pts</li>
+<li>KachowStickers24 – 0 pts</li>
+<li>KatAttack-Fast & Furriest – 0 pts</li>
+<li>The Maxtrix 5 – 0 pts</li>
+<li>TowMater's Crew – 0 pts</li>
+</ol>
 </div>
 
 </div>
 
+<!-- RIGHT COLUMN -->
 <div>
 
 <div class="box">
-
 <h2>Constructor Standings</h2>
-
 <table id="constructorTable">
-
 <thead>
 <tr>
 <th>Team</th>
 <th>Pts</th>
 </tr>
 </thead>
-
 <tbody>
-
 <tr data-team="McLaren"><td><span class="team-color" style="background:#ff8000;"></span>McLaren</td><td>0</td></tr>
 <tr data-team="Ferrari"><td><span class="team-color" style="background:#dc0000;"></span>Ferrari</td><td>0</td></tr>
 <tr data-team="Red Bull"><td><span class="team-color" style="background:#1e41ff;"></span>Red Bull</td><td>0</td></tr>
@@ -208,23 +202,17 @@ Poster credit: © BWT Alpine F1 Team – 2026 Australian GP artwork
 <tr data-team="Audi"><td><span class="team-color" style="background:#00b5e2;"></span>Audi</td><td>0</td></tr>
 <tr data-team="Alpine"><td><span class="team-color" style="background:#0090ff;"></span>Alpine</td><td>0</td></tr>
 <tr data-team="Cadillac"><td><span class="team-color" style="background:#808080;"></span>Cadillac</td><td>0</td></tr>
-
 </tbody>
-
 </table>
-
 </div>
 
 <div class="box">
-
 <h2>League Statistics</h2>
-
 <p><strong>Top Driver:</strong> <span id="topDriver">TBD</span></p>
 <p><strong>Top Constructor:</strong> <span id="topConstructor">TBD</span></p>
 <p><strong>Total Points Scored:</strong> <span id="totalPoints">0</span></p>
 <p><strong>Best Teammate Gap:</strong> <span id="teammateGap">TBD</span></p>
 <p><strong>Most Balanced Team:</strong> <span id="balancedTeam">TBD</span></p>
-
 </div>
 
 </div>
@@ -232,160 +220,91 @@ Poster credit: © BWT Alpine F1 Team – 2026 Australian GP artwork
 </div>
 
 <script>
-
 const raceDate = new Date(Date.UTC(2026,2,8,4,0,0));
 const countdownElement=document.getElementById("countdown");
 
 function updateCountdown(){
-
 const now=new Date();
 const diff=raceDate-now;
-
-if(diff<=0){
-countdownElement.innerHTML="🏁 Lights Out!";
-return;
-}
-
+if(diff<=0){countdownElement.innerHTML="🏁 Lights Out!";return;}
 const d=Math.floor(diff/(1000*60*60*24));
 const h=Math.floor((diff/(1000*60*60))%24);
 const m=Math.floor((diff/(1000*60))%60);
 const s=Math.floor((diff/1000)%60);
-
 countdownElement.innerHTML=`(${d}d ${h}h ${m}m ${s}s)`;
-
 }
 
 setInterval(updateCountdown,1000);
 updateCountdown();
 
 function updateStandings(){
-
 const driverTable=document.getElementById("driverTable").tBodies[0];
 const drivers=Array.from(driverTable.rows);
-
 drivers.sort((a,b)=>parseInt(b.cells[3].innerText)-parseInt(a.cells[3].innerText));
-
-drivers.forEach((row,i)=>{
-row.cells[0].innerText=i+1;
-driverTable.appendChild(row);
-});
+drivers.forEach((row,i)=>{row.cells[0].innerText=i+1;driverTable.appendChild(row);});
 
 const constructorPoints={};
-
 drivers.forEach(row=>{
-
 const team=row.dataset.team;
 const pts=parseInt(row.cells[3].innerText);
-
-if(!constructorPoints[team])constructorPoints[team]=0;
-
-constructorPoints[team]+=pts;
-
+constructorPoints[team]=(constructorPoints[team]||0)+pts;
 });
 
 const constructorTable=document.getElementById("constructorTable").tBodies[0];
 const constructors=Array.from(constructorTable.rows);
-
 constructors.forEach(row=>{
 const team=row.dataset.team;
 row.cells[1].innerText=constructorPoints[team]||0;
 });
-
 constructors.sort((a,b)=>parseInt(b.cells[1].innerText)-parseInt(a.cells[1].innerText));
-
 constructors.forEach(row=>constructorTable.appendChild(row));
 
 calculateStats();
-
 }
 
 function calculateStats(){
-
 const driverRows=document.getElementById("driverTable").tBodies[0].rows;
-
-let topDriver="";
-let topPoints=-1;
-let totalPoints=0;
-
+let topDriver="", topPoints=-1, totalPoints=0;
 const teamDrivers={};
 
 for(let row of driverRows){
-
 const name=row.cells[1].innerText;
 const pts=parseInt(row.cells[3].innerText);
 const team=row.dataset.team;
-
 totalPoints+=pts;
-
-if(pts>topPoints){
-topPoints=pts;
-topDriver=name;
-}
-
-if(!teamDrivers[team])teamDrivers[team]=[];
+if(pts>topPoints){topPoints=pts; topDriver=name;}
+if(!teamDrivers[team]) teamDrivers[team]=[];
 teamDrivers[team].push({name,pts});
-
 }
 
 document.getElementById("topDriver").innerText=`${topDriver} (${topPoints} pts)`;
 document.getElementById("totalPoints").innerText=totalPoints;
 
 const constructorRows=document.getElementById("constructorTable").tBodies[0].rows;
-
-let topConstructor="";
-let constructorPoints=-1;
+let topConstructor="", constructorPts=-1;
 
 for(let row of constructorRows){
-
 const team=row.cells[0].innerText;
 const pts=parseInt(row.cells[1].innerText);
-
-if(pts>constructorPoints){
-constructorPoints=pts;
-topConstructor=team;
+if(pts>constructorPts){constructorPts=pts; topConstructor=team;}
 }
 
-}
+document.getElementById("topConstructor").innerText=`${topConstructor} (${constructorPts} pts)`;
 
-document.getElementById("topConstructor").innerText=`${topConstructor} (${constructorPoints} pts)`;
-
-let biggestGap=0;
-let gapText="";
-let mostBalanced=Infinity;
-let balancedTeam="";
-
+let biggestGap=0, gapText="", mostBalanced=Infinity, balancedTeam="";
 for(let team in teamDrivers){
-
 if(teamDrivers[team].length===2){
-
-const d1=teamDrivers[team][0];
-const d2=teamDrivers[team][1];
-
+const d1=teamDrivers[team][0], d2=teamDrivers[team][1];
 const gap=Math.abs(d1.pts-d2.pts);
-
-if(gap>biggestGap){
-biggestGap=gap;
-gapText=`${d1.name} vs ${d2.name} (${gap} pts)`;
+if(gap>biggestGap){biggestGap=gap; gapText=`${d1.name} vs ${d2.name} (${gap} pts)`;}
+if(gap<mostBalanced){mostBalanced=gap; balancedTeam=team;}
 }
-
-if(gap<mostBalanced){
-mostBalanced=gap;
-balancedTeam=team;
 }
-
-}
-
-}
-
 document.getElementById("teammateGap").innerText=gapText;
 document.getElementById("balancedTeam").innerText=balancedTeam;
-
 }
 
-window.onload=function(){
-updateStandings();
-};
-
+window.onload=function(){updateStandings();}
 </script>
 
 </body>
