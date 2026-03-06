@@ -716,10 +716,13 @@ async function updateDriverTable(url) {
   const tbody = document.querySelector("#driverTable tbody");
   tbody.innerHTML = "";
 
-  data.forEach(row => {
+  // Sort by Points Rank (Column F, index 5 in array)
+  data.sort((a, b) => parseInt(a[5]) - parseInt(b[5]));
+
+  data.forEach((row, index) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${row[0]}</td>
+      <td>${row[5]}</td> <!-- Use Column F as Position -->
       <td><span class="team-color" style="background:${row[4] || '#ccc'};"></span>${row[1]}</td>
       <td>${row[2]}</td>
       <td>${row[3]}</td>
