@@ -211,10 +211,54 @@ font-size:14px;
 
 .car{
 position:absolute;
-left:0%;
+left:-10%;
 top:-2px;
 font-size:18px;
-transition:left 0.8s ease;
+transition:left 1.5s cubic-bezier(.4,1.4,.6,1);
+}
+
+/* Podium colors */
+
+.league-list li:nth-child(1){
+background:#fff7cc;
+border-left:6px solid gold;
+padding:6px;
+border-radius:6px;
+}
+
+.league-list li:nth-child(2){
+background:#f2f2f2;
+border-left:6px solid silver;
+padding:6px;
+border-radius:6px;
+}
+
+.league-list li:nth-child(3){
+background:#f8e3d0;
+border-left:6px solid #cd7f32;
+padding:6px;
+border-radius:6px;
+}
+
+@media (max-width:600px){
+
+.track{
+height:16px;
+}
+
+.car{
+font-size:16px;
+}
+
+.team-name{
+display:block;
+}
+
+.points{
+display:block;
+font-size:0.9em;
+}
+
 }
   
 </style>
