@@ -547,9 +547,12 @@ async function fetchCSV(url) {
 async function updateLeague(url) {
 
   const data = await fetchCSV(url);
-  const list = document.getElementById("leagueStandings");
+const list = document.getElementById("leagueStandings");
 
-  list.innerHTML = "";
+list.innerHTML = "";
+
+// Remove header row
+data.shift();
 
   // Sort by points descending BEFORE building the list
 data.sort((a, b) => parseInt(b[1]) - parseInt(a[1]));
