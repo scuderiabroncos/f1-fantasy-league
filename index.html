@@ -551,11 +551,13 @@ async function updateLeague(url) {
 
   list.innerHTML = "";
 
-  data.forEach((row,index) => {
+  // Sort by points descending BEFORE building the list
+data.sort((a, b) => parseInt(b[1]) - parseInt(a[1]));
 
-    const teamName = row[0];
-    const points = parseInt(row[1]) || 0;
+data.forEach((row,index) => {
 
+  const teamName = row[0];
+  const points = parseInt(row[1]) || 0;
     const li = document.createElement("li");
     li.dataset.points = points;
 
