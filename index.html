@@ -468,7 +468,7 @@ let previousPositions = new Map();
   
 /* -------------------- RACE TIMES -------------------- */
 
-const qualiStart = new Date("2026-03-14T07:00:00Z");
+const qualiStart = new Date(Date.UTC(2026, 2, 14, 7, 0, 0)); // year, month-1, day, hour, min, sec
 const raceStart = new Date("2026-03-15T07:00:00Z");
 
 // Approximate session durations
@@ -479,64 +479,45 @@ const raceEnd = new Date(raceStart.getTime() + (2*60*60*1000)); // +2 hours
 
 function updateCountdown(){
 
-const now = new Date();
-const status = document.getElementById("sessionStatus");
-const countdown = document.getElementById("countdown");
+  const now = new Date();
+  const status = document.getElementById("sessionStatus");
+  const countdown = document.getElementById("countdown");
 
-function formatCountdown(diff){
+  function formatCountdown(diff){
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    return `${d}d ${h}h ${m}m ${s}s`;
+  }
 
-const d=Math.floor(diff/86400000);
-const h=Math.floor((diff%86400000)/3600000);
-const m=Math.floor((diff%3600000)/60000);
-const s=Math.floor((diff%60000)/1000);
-
-return `${d}d ${h}h ${m}m ${s}s`;
-}
-
-// BEFORE QUALIFYING (team lock countdown)
-if(now < qualiStart){
-
-const diff = qualiStart - now;
-
-status.textContent = "🔒 Fantasy teams lock at qualifying!";
-countdown.textContent = `Teams lock in: ${formatCountdown(diff)}`;
-
-}
-
-// QUALIFYING SESSION
-else if(now >= qualiStart && now < qualiEnd){
-
-status.textContent = "🏁 Qualifying underway";
-countdown.textContent = "Fantasy teams are locked.";
-
-}
-
-// BETWEEN QUALI AND RACE
-else if(now >= qualiEnd && now < raceStart){
-
-const diff = raceStart - now;
-
-status.textContent = "🟢 Race coming up";
-countdown.textContent = `Lights out in: ${formatCountdown(diff)}`;
-
-}
-
-// RACE SESSION
-else if(now >= raceStart && now < raceEnd){
-
-  // Add blinking live dot
-  status.innerHTML = `<span class="live-dot"></span>🏎 Race in progress!`;
-  countdown.textContent = "Follow the action live!";
-
-}
-
-// AFTER RACE
-else{
-
-status.textContent = "🏁 Race finished";
-countdown.textContent = "Results updating...";
-
-}
+  // BEFORE QUALIFYING (team lock countdown)
+  if(now < qualiStart){
+    const diff = qualiStart - now; // ✅ just difference in milliseconds
+    status.textContent = "🔒 Fantasy teams lock at qualifying!";
+    countdown.textContent = `Teams lock in: ${formatCountdown(diff)}`;
+  }
+  // QUALIFYING SESSION
+  else if(now >= qualiStart && now < qualiEnd){
+    status.textContent = "🏁 Qualifying underway";
+    countdown.textContent = "Fantasy teams are locked.";
+  }
+  // BETWEEN QUALI AND RACE
+  else if(now >= qualiEnd && now < raceStart){
+    const diff = raceStart - now;
+    status.textContent = "🟢 Race coming up";
+    countdown.textContent = `Lights out in: ${formatCountdown(diff)}`;
+  }
+  // RACE SESSION
+  else if(now >= raceStart && now < raceEnd){
+    status.innerHTML = `<span class="live-dot"></span>🏎 Race in progress!`;
+    countdown.textContent = "Follow the action live!";
+  }
+  // AFTER RACE
+  else{
+    status.textContent = "🏁 Race finished";
+    countdown.textContent = "Results updating...";
+  }
 
 }
 
