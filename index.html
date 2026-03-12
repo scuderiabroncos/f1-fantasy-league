@@ -196,6 +196,39 @@ line-height:1.4;
 .site-header{
 align-items:center;
 }
+
+.rules-dropdown summary{
+cursor:pointer;
+list-style:none;
+}
+
+.rules-dropdown summary h2{
+display:inline;
+}
+
+.rules-dropdown summary::before{
+content:"▶ ";
+color:#d00000;
+font-weight:bold;
+}
+
+.rules-dropdown[open] summary::before{
+content:"▼ ";
+}
+
+.arrow-up{
+color:#2ecc71;
+font-weight:bold;
+}
+
+.arrow-down{
+color:#e74c3c;
+font-weight:bold;
+}
+
+.arrow-neutral{
+color:#aaa;
+}
   
 </style>
 </head>
@@ -246,8 +279,8 @@ Join the League
 
 <h2>Weekly Summary</h2>
 
-<p>
-The first race of the year is over and what a wild ride! The new regulations made for an exciting start to the season with technical and driver-management issues leading to multiple crashes and retirements over the course of the weekend. The qualifying order was shuffled quite a bit during the race, and although Max Verstappen started 20th of 22 cars on the grid, all of his overtaking during the race rewarded fantasy teams who featured him! Congrats to Fast Cars w/ Good Drivers for taking the first RACE WIN of 2026!
+<p id="weeklySummary">
+Loading race recap...
 </p>
 
 </div>
@@ -255,7 +288,9 @@ The first race of the year is over and what a wild ride! The new regulations mad
 
 <div class="box">
 
-<h2>F1 Fantasy Rules (Quick Guide)</h2>
+<details class="rules-dropdown">
+
+<summary><h2>F1 Fantasy Rules (Quick Guide)</h2></summary>
 
 <p>
 Each player builds a fantasy team made up of <strong>5 drivers and 2 constructors</strong>
@@ -264,25 +299,20 @@ and teams perform during each race weekend.
 </p>
 
 <ul>
-
 <li><strong>Scoring:</strong> Points come from qualifying, race finish, positions gained, fastest lap, and bonuses.</li>
-
 <li><strong>DRS Boost:</strong> Each week you can apply a DRS Boost to one driver, doubling their race points.</li>
-
 <li><strong>Turbo Driver:</strong> Drivers under a price cap can receive a Turbo boost.</li>
-
 <li><strong>Transfers:</strong> Free transfers each race week; extra transfers may cost points.</li>
-
 <li><strong>Chips:</strong> Strategic chips (Limitless, Wildcard, etc.) can maximize scoring.</li>
-
 <li><strong>Deadline:</strong> Teams lock at the start of qualifying each race weekend.</li>
-
 </ul>
 
 <p>
 Full rules and scoring details on the
 <a href="https://fantasy.formula1.com/" target="_blank">official F1 Fantasy site</a>.
 </p>
+
+</details>
 
 </div>
 
@@ -380,6 +410,11 @@ Full rules and scoring details on the
 
 <script>
 
+let biggestClimber = {
+name: "",
+gain: 0
+};
+  
   // -------------------- TRACK PREVIOUS POSITIONS --------------------
 let previousPositions = new Map();
   
@@ -424,6 +459,10 @@ return txt.trim().split("\n").map(r=>r.split(","));
 /* -------------------- LEAGUE -------------------- */
 
 async function updateLeague(url) {
+
+   // Reset biggest climber each update
+  biggestClimber = { name: "", gain: 0 };
+  
   const data = await fetchCSV(url);
   const list = document.getElementById("leagueStandings");
   list.innerHTML = "";
@@ -444,12 +483,28 @@ async function updateLeague(url) {
 
     // Determine arrow direction
     const prevIndex = previousPositions.get(name);
-  let arrow = "–"; // default: no change
+  let arrow = `<span class="arrow-neutral">–</span>`;
+
 if (prevIndex !== undefined) {
-  if (index < prevIndex) arrow = "▲"; // moved up
-  else if (index > prevIndex) arrow = "▼"; // moved down
+
+  const change = prevIndex - index;
+
+  if (change > 0){
+    arrow = `<span class="arrow-up">▲ +${change}</span>`;
+  }
+  else if (change < 0){
+    arrow = `<span class="arrow-down">▼ ${change}</span>`;
+  }
+
 }
 
+const change = prevIndex !== undefined ? prevIndex - index : 0;
+
+if(change > biggestClimber.gain){
+biggestClimber.name = name;
+biggestClimber.gain = change;
+}
+    
     li.innerHTML = `
       <span class="team-name">${podium} ${name} ${arrow}</span>
       <span class="points">${pts} pts</span>
@@ -476,20 +531,29 @@ async function updateWinner(url){
   // Sort by points descending
   data.sort((a,b)=>b[1]-a[1]);
 
-  // Last race winner = team with most points this race (first row)
+  generateSummary(data);
+  
+  // Last race winner
   const winner = data[0][0];
   document.getElementById("raceWinner").textContent = winner;
 
   // Build team stats display
-  // Assuming column indexes: 0=Team Name, 2=Race Wins, 3=Podiums
   let statsHtml = "<ul style='padding-left:20px; margin:4px 0;'>";
+
   data.forEach(row => {
     const name = row[0];
     const wins = row[2] || 0;
     const podiums = row[3] || 0;
+
     statsHtml += `<li>${name}: 🏆 ${wins} wins, 🥉 ${podiums} podiums</li>`;
   });
+
   statsHtml += "</ul>";
+
+  // Add Biggest Climber
+  if(biggestClimber.gain > 0){
+    statsHtml += `<p>🚀 Biggest Climber: <strong>${biggestClimber.name}</strong> (+${biggestClimber.gain})</p>`;
+  }
 
   document.getElementById("teamStats").innerHTML = statsHtml;
 }
@@ -577,6 +641,36 @@ setInterval(updateCountdown,1000);
 
 });
 
+function generateSummary(data){
+
+const winner = data[0][0];
+const winnerPts = data[0][1];
+const second = data[1][0];
+const third = data[2][0];
+
+let summary =
+`🏆 ${winner} won the race weekend with ${winnerPts} points. ` +
+`${second} finished second while ${third} completed the podium.`;
+
+// Close battle detection
+if(winnerPts - data[1][1] <= 10){
+summary += " It was a very tight battle for the win!";
+}
+
+// Dominant win
+if(winnerPts - data[1][1] >= 50){
+summary += " A dominant performance at the front.";
+}
+
+// Biggest climber mention
+if(biggestClimber.gain > 0){
+summary += ` 🚀 Biggest climb: ${biggestClimber.name} gained ${biggestClimber.gain} places in the standings.`;
+}
+
+document.getElementById("weeklySummary").textContent = summary;
+
+}
+  
 </script>
 
 </body>
