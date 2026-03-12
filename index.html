@@ -56,6 +56,16 @@ border-radius:12px;
 margin-bottom:20px;
 }
 
+.winner-banner{
+background:#fff7cc;
+border-left:6px solid gold;
+padding:12px 16px;
+margin-bottom:20px;
+border-radius:8px;
+font-weight:bold;
+font-size:1.05em;
+}
+  
 .tagline{color:#555}
 
 .header-image{
@@ -68,6 +78,13 @@ justify-content:center;
 max-width:100%;
 height:auto;
 border-radius:10px;
+}
+
+  .image-credit{
+font-size:0.75em;
+color:#777;
+margin-top:6px;
+text-align:center;
 }
   
 .join-btn{
@@ -147,7 +164,7 @@ text-align:center;
 .track{height:16px}
 
 }
-
+  
 </style>
 </head>
 
@@ -155,6 +172,10 @@ text-align:center;
 
 <header class="site-header">
 
+<div class="winner-banner">
+🏆 Last Race Winner: <span id="raceWinner">Loading...</span>
+</div>
+  
 <div>
 
 <h1>🏎 Scuderia Broncos</h1>
@@ -184,7 +205,8 @@ Join the League
 </div>
 
 <div class="header-image">
-<img src="https://raw.githubusercontent.com/scuderiabroncos/f1-fantasy-league/refs/heads/main/china-2026.jpeg">
+<img src="https://raw.githubusercontent.com/scuderiabroncos/f1-fantasy-league/refs/heads/main/china-2026.jpeg" alt="Ferrari Formula 1 car">
+<p class="image-credit">Image © Scuderia Ferrari</p>
 </div>
   
 </header>
@@ -405,6 +427,21 @@ if (prevIndex !== undefined) {
   });
 }
 
+async function updateWinner(url){
+
+const data = await fetchCSV(url);
+
+if (data[0][0].toLowerCase().includes("team")) data.shift();
+
+// sort by points descending
+data.sort((a,b)=>b[1]-a[1]);
+
+const winner = data[0][0];
+
+document.getElementById("raceWinner").textContent = winner;
+
+}
+  
 /* -------------------- DRIVER TABLE -------------------- */
 
 async function updateDrivers(url){
@@ -469,7 +506,8 @@ await Promise.all([
 
 updateLeague(`${base}&gid=0`),
 updateDrivers(`${base}&gid=1986347732`),
-updateConstructors(`${base}&gid=886363941`)
+updateConstructors(`${base}&gid=886363941`),
+updateWinner(`${base}&gid=0`)
 
 ]);
 
