@@ -400,7 +400,13 @@ async function updateLeague(url) {
   data.sort((a, b) => b[1] - a[1]);
 
   data.forEach(([name, pts], index) => {
-    const li = document.createElement("li");
+
+  const li = document.createElement("li");
+    
+  let podium = "";
+  if(index === 0) podium = "🥇";
+  else if(index === 1) podium = "🥈";
+  else if(index === 2) podium = "🥉";
 
     // Determine arrow direction
     const prevIndex = previousPositions.get(name);
@@ -411,7 +417,7 @@ if (prevIndex !== undefined) {
 }
 
     li.innerHTML = `
-      <span class="team-name">${name} ${arrow}</span>
+      <span class="team-name">${podium} ${name} ${arrow}</span>
       <span class="points">${pts} pts</span>
       <div class="track">
         <span class="grid">🚦</span>
