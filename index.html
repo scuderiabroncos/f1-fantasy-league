@@ -229,6 +229,54 @@ font-weight:bold;
 .arrow-neutral{
 color:#aaa;
 }
+
+.next-race {
+  background: #fff8f0;
+  border-left: 6px solid #d00000;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  max-width: 320px;
+}
+
+.next-race h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.15em;
+  color: #d00000;
+}
+
+#sessionStatus {
+  font-weight: bold;
+  font-size: 1em;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+#countdown {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #d00000;
+  border-top: 1px solid #eee;
+  padding-top: 6px;
+  margin-top: 6px;
+}
+
+#sessionStatus .live-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #2ecc71; /* bright green */
+  border-radius: 50%;
+  margin-right: 8px;
+  vertical-align: middle;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
   
 </style>
 </head>
@@ -420,28 +468,75 @@ let previousPositions = new Map();
   
 /* -------------------- RACE TIMES -------------------- */
 
-const qualiStart=new Date("2026-03-14T07:00:00Z");
-const raceStart=new Date("2026-03-15T07:00:00Z");
+const qualiStart = new Date("2026-03-14T07:00:00Z");
+const raceStart = new Date("2026-03-15T07:00:00Z");
+
+// Approximate session durations
+const qualiEnd = new Date(qualiStart.getTime() + (60*60*1000)); // +1 hour
+const raceEnd = new Date(raceStart.getTime() + (2*60*60*1000)); // +2 hours
 
 /* -------------------- COUNTDOWN -------------------- */
 
 function updateCountdown(){
 
-const now=new Date();
-const diff=raceStart-now;
+const now = new Date();
+const status = document.getElementById("sessionStatus");
+const countdown = document.getElementById("countdown");
 
-if(diff<=0){
-document.getElementById("countdown").textContent="🏁 Race in progress!";
-return;
-}
+function formatCountdown(diff){
 
 const d=Math.floor(diff/86400000);
 const h=Math.floor((diff%86400000)/3600000);
 const m=Math.floor((diff%3600000)/60000);
 const s=Math.floor((diff%60000)/1000);
 
-document.getElementById("countdown").textContent=
-`Lights out in: ${d}d ${h}h ${m}m ${s}s`;
+return `${d}d ${h}h ${m}m ${s}s`;
+}
+
+// BEFORE QUALIFYING (team lock countdown)
+if(now < qualiStart){
+
+const diff = qualiStart - now;
+
+status.textContent = "🔒 Fantasy teams lock at qualifying!";
+countdown.textContent = `Teams lock in: ${formatCountdown(diff)}`;
+
+}
+
+// QUALIFYING SESSION
+else if(now >= qualiStart && now < qualiEnd){
+
+status.textContent = "🏁 Qualifying underway";
+countdown.textContent = "Fantasy teams are locked.";
+
+}
+
+// BETWEEN QUALI AND RACE
+else if(now >= qualiEnd && now < raceStart){
+
+const diff = raceStart - now;
+
+status.textContent = "🟢 Race coming up";
+countdown.textContent = `Lights out in: ${formatCountdown(diff)}`;
+
+}
+
+// RACE SESSION
+else if(now >= raceStart && now < raceEnd){
+
+  // Add blinking live dot
+  status.innerHTML = `<span class="live-dot"></span>🏎 Race in progress!`;
+  countdown.textContent = "Follow the action live!";
+
+}
+
+// AFTER RACE
+else{
+
+status.textContent = "🏁 Race finished";
+countdown.textContent = "Results updating...";
+
+}
 
 }
 
