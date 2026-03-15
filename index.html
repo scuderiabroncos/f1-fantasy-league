@@ -277,6 +277,15 @@ color:#aaa;
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
 }
+
+#summaryStats ul{
+margin:6px 0 0 20px;
+padding:0;
+}
+
+#summaryStats li{
+margin-bottom:4px;
+}
   
 </style>
 </head>
@@ -322,18 +331,6 @@ Join the League
   
 </header>
 
-
-<div class="box">
-
-<h2>Weekly Summary</h2>
-
-<p id="weeklySummary">
-Loading race recap...
-</p>
-
-</div>
-
-
 <div class="box">
 
 <details class="rules-dropdown">
@@ -371,12 +368,11 @@ Full rules and scoring details on the
 <ul id="leagueStandings" class="league-list"></ul>
 
 </div>
-
-<div id="summaryStats"></div>
   
 <div class="box" id="lastRaceBox">
-  <h2>Last Race Winner & Season Results</h2>
+  <h2>Season Results</h2>
   <p>🏆 Chinese GP Winner: <span id="raceWinner">Loading...</span></p>
+  <div id="summaryStats"></div>
   <div id="teamStats">Loading team stats...</div>
 </div>
 
@@ -723,32 +719,7 @@ const secondPts = parseInt(data[1][1]);
 const third = data[2][0];
 const thirdPts = parseInt(data[2][1]);
 
-let summary = `🏆 ${winner} dominated this race week with ${winnerPts} points. `;
-summary += `${second} finished P2 (${secondPts}) and ${third} took P3 (${thirdPts}). `;
-
-
-// Close battle
-if(winnerPts - secondPts <= 10){
-summary += "⚔️ The fight for P1 went down to the wire. ";
-}
-
-// Blowout
-if(winnerPts - secondPts >= 40){
-summary += "💪 Absolute domination at the front. ";
-}
-
-// Tight podium
-if(secondPts - thirdPts <= 5){
-summary += "🥉 The podium battle was extremely close. ";
-}
-
-// Biggest climber
-if(biggestClimber.gain > 0){
-summary += `🚀 ${biggestClimber.name} made the biggest move, climbing ${biggestClimber.gain} places. `;
-}
-
-
-// -------------------- TIGHTEST BATTLE --------------------
+// ---------- TIGHTEST BATTLE ----------
 
 let tightestGap = Infinity;
 let tightBattle = "";
@@ -769,8 +740,29 @@ tightBattle = `${teamA} vs ${teamB}`;
 
 }
 
-if(tightestGap <= 5){
-summary += `⚔️ Tightest battle: ${tightBattle} separated by just ${tightestGap} points. `;
+// ---------- MIDFIELD LEADER ----------
+
+let midfieldLeader = "";
+let midfieldPts = "";
+
+if(data.length > 3){
+midfieldLeader = data[3][0];
+midfieldPts = data[3][1];
+}
+
+// ---------- UPDATE STATS PANEL ----------
+
+document.getElementById("summaryStats").innerHTML = `
+<ul>
+<li>🥇 Winner: <strong>${winner}</strong> (${winnerPts} pts)</li>
+<li>🥈 Runner-up: ${second} (${secondPts})</li>
+<li>🥉 Third: ${third} (${thirdPts})</li>
+<li>📊 Winning Margin: ${winnerPts-secondPts} pts</li>
+<li>⚔️ Tightest Battle: ${tightBattle} (${tightestGap} pts)</li>
+<li>📈 Midfield Leader: ${midfieldLeader} (${midfieldPts} pts)</li>
+</ul>
+`;
+
 }
 
 
@@ -782,12 +774,6 @@ let bestMidfield = data[3];
 summary += `📈 ${bestMidfield[0]} led the midfield with ${bestMidfield[1]} points.`;
 
 }
-
-
-// -------------------- UPDATE PAGE --------------------
-
-document.getElementById("weeklySummary").textContent = summary;
-
 
 // -------------------- STATS PANEL --------------------
 
