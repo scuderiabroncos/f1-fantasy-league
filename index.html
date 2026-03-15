@@ -372,6 +372,8 @@ Full rules and scoring details on the
 
 </div>
 
+<div id="summaryStats"></div>
+  
 <div class="box" id="lastRaceBox">
   <h2>Last Race Winner & Season Results</h2>
   <p>🏆 Chinese GP Winner: <span id="raceWinner">Loading...</span></p>
@@ -715,30 +717,88 @@ setInterval(updateCountdown,1000);
 function generateSummary(data){
 
 const winner = data[0][0];
-const winnerPts = data[0][1];
+const winnerPts = parseInt(data[0][1]);
 const second = data[1][0];
+const secondPts = parseInt(data[1][1]);
 const third = data[2][0];
+const thirdPts = parseInt(data[2][1]);
 
-let summary =
-`🏆 ${winner} won the race weekend with ${winnerPts} points. ` +
-`${second} finished second while ${third} completed the podium.`;
+let summary = `🏆 ${winner} dominated this race week with ${winnerPts} points. `;
+summary += `${second} finished P2 (${secondPts}) and ${third} took P3 (${thirdPts}). `;
 
-// Close battle detection
-if(winnerPts - data[1][1] <= 10){
-summary += " It was a very tight battle for the win!";
+
+// Close battle
+if(winnerPts - secondPts <= 10){
+summary += "⚔️ The fight for P1 went down to the wire. ";
 }
 
-// Dominant win
-if(winnerPts - data[1][1] >= 50){
-summary += " A dominant performance at the front.";
+// Blowout
+if(winnerPts - secondPts >= 40){
+summary += "💪 Absolute domination at the front. ";
 }
 
-// Biggest climber mention
+// Tight podium
+if(secondPts - thirdPts <= 5){
+summary += "🥉 The podium battle was extremely close. ";
+}
+
+// Biggest climber
 if(biggestClimber.gain > 0){
-summary += ` 🚀 Biggest climb: ${biggestClimber.name} gained ${biggestClimber.gain} places in the standings.`;
+summary += `🚀 ${biggestClimber.name} made the biggest move, climbing ${biggestClimber.gain} places. `;
 }
+
+
+// -------------------- TIGHTEST BATTLE --------------------
+
+let tightestGap = Infinity;
+let tightBattle = "";
+
+for(let i=0;i<data.length-1;i++){
+
+const teamA = data[i][0];
+const ptsA = parseInt(data[i][1]);
+const teamB = data[i+1][0];
+const ptsB = parseInt(data[i+1][1]);
+
+const gap = Math.abs(ptsA - ptsB);
+
+if(gap < tightestGap){
+tightestGap = gap;
+tightBattle = `${teamA} vs ${teamB}`;
+}
+
+}
+
+if(tightestGap <= 5){
+summary += `⚔️ Tightest battle: ${tightBattle} separated by just ${tightestGap} points. `;
+}
+
+
+// -------------------- MIDFIELD LEADER --------------------
+
+if(data.length > 3){
+
+let bestMidfield = data[3];
+summary += `📈 ${bestMidfield[0]} led the midfield with ${bestMidfield[1]} points.`;
+
+}
+
+
+// -------------------- UPDATE PAGE --------------------
 
 document.getElementById("weeklySummary").textContent = summary;
+
+
+// -------------------- STATS PANEL --------------------
+
+document.getElementById("summaryStats").innerHTML = `
+<ul>
+<li>🥇 Winner: <strong>${winner}</strong></li>
+<li>🥈 Runner-up: ${second}</li>
+<li>🥉 Third: ${third}</li>
+<li>📊 Winning Margin: ${winnerPts-secondPts} pts</li>
+</ul>
+`;
 
 }
   
