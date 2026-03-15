@@ -717,7 +717,7 @@ const winnerPts = parseInt(data[0][1]);
 const second = data[1][0];
 const secondPts = parseInt(data[1][1]);
 const third = data[2][0];
-const thirdPts = parseInt(data[2][1]);
+const thirdPts = parseInt(data[2][1];
 
 // ---------- TIGHTEST BATTLE ----------
 
@@ -760,29 +760,6 @@ document.getElementById("summaryStats").innerHTML = `
 <li>📊 Winning Margin: ${winnerPts-secondPts} pts</li>
 <li>⚔️ Tightest Battle: ${tightBattle} (${tightestGap} pts)</li>
 <li>📈 Midfield Leader: ${midfieldLeader} (${midfieldPts} pts)</li>
-</ul>
-`;
-
-}
-
-
-// -------------------- MIDFIELD LEADER --------------------
-
-if(data.length > 3){
-
-let bestMidfield = data[3];
-summary += `📈 ${bestMidfield[0]} led the midfield with ${bestMidfield[1]} points.`;
-
-}
-
-// -------------------- STATS PANEL --------------------
-
-document.getElementById("summaryStats").innerHTML = `
-<ul>
-<li>🥇 Winner: <strong>${winner}</strong></li>
-<li>🥈 Runner-up: ${second}</li>
-<li>🥉 Third: ${third}</li>
-<li>📊 Winning Margin: ${winnerPts-secondPts} pts</li>
 </ul>
 `;
 
