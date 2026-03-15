@@ -352,7 +352,7 @@ and teams perform during each race weekend.
 <li><strong>Turbo Driver:</strong> Drivers under a price cap can receive a Turbo boost.</li>
 <li><strong>Transfers:</strong> Free transfers each race week; extra transfers may cost points.</li>
 <li><strong>Chips:</strong> Strategic chips (Limitless, Wildcard, etc.) can maximize scoring.</li>
-<li><strong>Deadline:</strong> Teams lock at the start of qualifying each race weekend.</li>
+<li><strong>Deadline:</strong> Teams lock at the start of qualifying (or sprint race) each race weekend.</li>
 </ul>
 
 <p>
@@ -490,7 +490,7 @@ function updateCountdown() {
   // BEFORE TEAM LOCK (Sprint race)
   if (now < teamLock) {
     const diff = teamLock - now;
-    status.textContent = "🔒 Fantasy teams lock at Sprint Race start!";
+    status.textContent = "🔒 Fantasy teams lock at Qualifying start!";
     countdown.textContent = `Teams lock in: ${formatCountdown(diff)}`;
   }
   // SPRINT SESSION (teams locked)
