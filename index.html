@@ -398,16 +398,15 @@ Full rules and scoring details on the
   <h2>Last Race & Season Results</h2>
 
   <div>
-    🏆 Chinese GP Winner: <strong><span>The Maxtrix 5 (443)</span></strong>
+    🏆 Japanese GP Winner: <strong><span>Bear Essentials (275)</span></strong>
   </div>
 
   <hr class="results-divider">
 
   <div>
     <ul>
-      <li>🥈 Runner-up: Drive Boys! (379 pts)</li>
-      <li>🥉 Third: Bear Essentials (368 pts)</li>
-      <li>⚔️ Tightest Battles: Fast Car & Driver (Chris) (305) vs Delta Love (298) vs Hold on! (291)</li>
+      <li>🥈 Runner-up: Hold on! (207 pts)</li>
+      <li>🥉 Third: Here I Go! (207 pts)</li>
     </ul>
   </div>
 
@@ -480,13 +479,13 @@ let previousPositions = new Map();
 /* -------------------- COUNTDOWN -------------------- */
 
 // --------- SESSION TIMES IN UTC ---------
-const teamLock   = new Date(Date.UTC(2026, 4, 2, 20, 0, 0)); // Qualifying (May 2)
-const sprintEnd  = new Date(Date.UTC(2026, 4, 2, 21, 0, 0)); // Not a sprint weekend
-const raceStart  = new Date(Date.UTC(2026, 4, 3, 19, 0, 0)); // Race start (May 3)
-const raceEnd    = new Date(Date.UTC(2026, 4, 3, 21, 0, 0)); // Race end
+const teamLock  = new Date("2026-05-02T20:00:00Z");
+const sprintEnd = new Date("2026-05-02T21:00:00Z");
+const raceStart = new Date("2026-05-03T19:00:00Z");
+const raceEnd   = new Date("2026-05-03T21:00:00Z");
 
 function updateCountdown() {
-  const now = new Date();
+  const now = new Date(new Date().toISOString());
   const status = document.getElementById("sessionStatus");
   const countdown = document.getElementById("countdown");
 
