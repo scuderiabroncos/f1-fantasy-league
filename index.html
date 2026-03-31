@@ -413,25 +413,7 @@ Full rules and scoring details on the
 
   <hr class="results-divider">
 
- <div id="teamStats">
-    <ul style="padding-left:20px; margin:4px 0;">
-      <li>The Maxtrix 5: 🏆 1 wins, 🥉 2 podiums</li>
-      <li>Bear Essentials: 🏆 0 wins, 🥉 1 podiums</li>
-      <li>Delta Krass: 🏆 0 wins, 🥉 1 podiums</li>
-      <li>Fast Car & Driver (Chris): 🏆 1 wins, 🥉 1 podiums</li>
-      <li>Delta Love: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>TowMater's Crew: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>KatAttack-Fast & Furriest: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>Drive Boys!: 🏆 0 wins, 🥉 1 podiums</li>
-      <li>Still Deciding Team Name: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>Here I Go!: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>Kyle Go Fast: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>Second Seat F1 Team: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>Hold on!: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>KachowStickers24: 🏆 0 wins, 🥉 0 podiums</li>
-      <li>Fast Car Go Michael Team: 🏆 0 wins, 🥉 0 podiums</li>
-    </ul>
-  </div>
+ <div id="teamStats"></div>
 
 </div>
 <div class="box">
@@ -629,7 +611,7 @@ async function updateWinner(url){
   if (data.length && data[0][0].toLowerCase().includes("team")) data.shift();
 
   // Sort by points descending
-  data.sort((a,b)=>b[1]-a[1]);
+  data.sort((a,b)=>parseInt(b[1]) - parseInt(a[1]));
 
   generateSummary(data);
   
@@ -641,12 +623,19 @@ async function updateWinner(url){
   let statsHtml = "<ul style='padding-left:20px; margin:4px 0;'>";
 
   data.forEach(row => {
-    const name = row[0];
-    const wins = row[2] || 0;
-    const podiums = row[3] || 0;
 
-    statsHtml += `<li>${name}: 🏆 ${wins} wins, 🥉 ${podiums} podiums</li>`;
-  });
+  const name = row[0];
+  const wins = parseInt(row[2]) || 0;
+  const podiums = parseInt(row[3]) || 0;
+  const pts = parseInt(row[1]) || 0;
+
+  statsHtml += `
+    <li>
+      <strong>${name}</strong> (${pts} pts):
+      🏆 ${wins} wins, 🥉 ${podiums} podiums
+    </li>
+  `;
+});
 
   statsHtml += "</ul>";
 
