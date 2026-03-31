@@ -480,11 +480,12 @@ let previousPositions = new Map();
 /* -------------------- COUNTDOWN -------------------- */
 
 // --------- SESSION TIMES IN UTC ---------
-const teamLock  = new Date("2026-05-02T20:00:00Z");
-const sprintEnd = new Date("2026-05-02T21:00:00Z");
-const raceStart = new Date("2026-05-03T20:00:00Z"); // FIXED
-const raceEnd   = new Date("2026-05-03T22:00:00Z"); // adjust if needed
-
+// Local time (EDT / your browser's timezone)
+const teamLock  = new Date("2026-05-02T16:00:00"); // 4 PM local = 20:00 UTC
+const sprintEnd = new Date("2026-05-02T17:00:00");
+const raceStart = new Date("2026-05-03T16:00:00");
+const raceEnd   = new Date("2026-05-03T18:00:00");
+  
 function updateCountdown() {
   const now = new Date();
   const status = document.getElementById("sessionStatus");
