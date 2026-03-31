@@ -253,15 +253,6 @@ color:#aaa;
   color: #555;
 }
 
-#countdown {
-  font-weight: bold;
-  font-size: 1.1em;
-  color: #d00000;
-  border-top: 1px solid #eee;
-  padding-top: 6px;
-  margin-top: 6px;
-}
-
 #sessionStatus .live-dot {
   display: inline-block;
   width: 10px;
@@ -339,8 +330,6 @@ Join the League
 <p><strong>Miami Grand Prix – May 1–3</strong></p>
 
 <p id="sessionStatus" style="font-weight:bold;color:#d00000"></p>
-
-<p id="countdown" style="font-weight:bold"></p>
 
 </div>
 
@@ -476,54 +465,6 @@ gain: 0
   
   // -------------------- TRACK PREVIOUS POSITIONS --------------------
 let previousPositions = new Map();
-  
-/* -------------------- COUNTDOWN -------------------- */
-// Race times in UTC
-  
-/* -------------------- COUNTDOWN (Miami local time) -------------------- */
-// Race times in Miami local time (EDT, UTC-4)
-const teamLock  = new Date("2026-05-02T20:00:00-04:00").getTime();
-const sprintEnd = new Date("2026-05-02T21:00:00-04:00").getTime();
-const raceStart = new Date("2026-05-03T20:00:00-04:00").getTime();
-const raceEnd   = new Date("2026-05-03T22:00:00-04:00").getTime();
-
-function updateCountdown() {
-  const now = new Date().getTime(); // browser time
-  const status = document.getElementById("sessionStatus");
-  const countdown = document.getElementById("countdown");
-
-  function formatCountdown(diff) {
-    const totalHours = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    return `${totalHours}h ${m}m ${s}s`;
-  }
-
-  if (now < teamLock) {
-    const diff = teamLock - now;
-    status.textContent = "🔒 Fantasy teams lock at Qualifying start!";
-    countdown.textContent = `Teams lock in: ${formatCountdown(diff)}`;
-  } else if (now >= teamLock && now < sprintEnd) {
-    status.textContent = "🏁 Sprint Race underway";
-    countdown.textContent = "Fantasy teams are locked.";
-  } else if (now >= sprintEnd && now < raceStart) {
-    const diff = raceStart - now;
-    status.textContent = "🟢 Main Race coming up";
-    countdown.textContent = `Lights out in: ${formatCountdown(diff)}`;
-  } else if (now >= raceStart && now < raceEnd) {
-    status.innerHTML = `<span class="live-dot"></span>🏎 Race in progress!`;
-    countdown.textContent = "Follow the action live!";
-  } else {
-    status.textContent = "🏁 Race finished";
-    countdown.textContent = "Results updating...";
-  }
-}
-
-// Initialize countdown and auto-update every second
-window.addEventListener("load", () => {
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
-});
   
 /* -------------------- CSV FETCH -------------------- */
 
@@ -722,10 +663,8 @@ updateWinner(`${base}&gid=0`)
 window.addEventListener("load",()=>{
 
 updateAll();
-updateCountdown();
 
 setInterval(updateAll,300000);
-setInterval(updateCountdown,1000);
 
 });
 
