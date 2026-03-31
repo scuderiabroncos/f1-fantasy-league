@@ -486,7 +486,7 @@ const raceStart = new Date("2026-05-03T19:00:00Z");
 const raceEnd   = new Date("2026-05-03T21:00:00Z");
 
 function updateCountdown() {
-  const now = new Date(new Date().toISOString());
+  const now = new Date();
   const status = document.getElementById("sessionStatus");
   const countdown = document.getElementById("countdown");
 
